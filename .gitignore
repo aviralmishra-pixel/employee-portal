@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+**/node_modules/
+
+# Local environment files (Contains passwords/JWT secrets)
+.env
+**/ .env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+
+# IDE files and OS garbage
+.vscode/
+.DS_Store
+thumbs.db
