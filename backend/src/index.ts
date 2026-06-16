@@ -1,13 +1,30 @@
 import "reflect-metadata";
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+import { createClient } from "redis";
 import { AppDataSource } from "./config/data-source";
 import authRoutes from "./routes/auth.routes";
 
 const app = express();
 
-app.use(cors());
+// Initialize Redis Client and connect to Redis server
+export const redisClient = createClient({ url: process.env.REDIS_URL });
+redisClient.on("error", (err) => console.error("Redis Error:", err));
+redisClient.connect().then(() => console.log("Connected to Redis"));
+ 
+app.use(cors({
+  origin: (origin, callback) => {
+    callback(null, true);
+  },
+  credentials: true,               // Allows cookies/tokens to pass through
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 

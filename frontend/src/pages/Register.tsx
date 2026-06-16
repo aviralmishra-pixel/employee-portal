@@ -12,7 +12,7 @@ const Register: React.FC = () => {
     e.preventDefault();
     try {
       // Mapping userId to username to match your backend auth controller setup
-      await api.post('/auth/register', { 
+      await api.post('/register', { 
         name: formData.name, 
         username: formData.userId, 
         department: formData.department, 
@@ -20,7 +20,8 @@ const Register: React.FC = () => {
       });
       navigate('/login');
     } catch (err) {
-      const error = err as AxiosError<{ message: string }>;
+      const error = err as AxiosError<{ message: string }>
+      console.log(error);
       setError(error.response?.data?.message || 'Registration failed.');
     }
   };

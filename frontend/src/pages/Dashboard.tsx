@@ -1,11 +1,9 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { useAuth } from '../context/useAuth';
-import { useNavigate } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen bg-gray-50">
