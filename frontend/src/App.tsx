@@ -3,6 +3,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProfileOverview from './pages/ProfileOverview';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 
         {/* Fallback route */}
         <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/profile" element= {<ProfileOverview />} />
       </Routes>
     </Router>
   );

@@ -13,13 +13,13 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-      <div className="text-xl font-bold text-blue-600">
-        Binmile Employee Portal
-      </div>
+      <div><img src="/src/assets/Untitled.jpeg"  className="h-10 w-auto" /></div>
+      <div className="text-2xl font-bold text-blue-600 align-middle">Binmile Employee Portal </div>
+      
       
       {/* Top Right User Detail Block */}
       {user && (
-        <div className="flex items-center gap-4 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+        <div className="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-lg border border-gray-100">
           <div className="text-right">
             <p className="text-sm font-bold text-gray-800">{user.name}</p>
             <p className="text-xs text-gray-500">@{user.userId}</p>

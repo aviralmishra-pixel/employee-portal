@@ -29,7 +29,7 @@ const Register: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-lg w-96">
-        <h2 className="text-2xl font-bold text-center mb-6">Register Employee</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Register New Employee</h2>
         {error && <p className="text-red-500 text-sm mb-4 text-center">{error}</p>}
         <form onSubmit={handleRegister} className="flex flex-col gap-4">
           <input type="text" placeholder="Full Name" className="border p-2 rounded"

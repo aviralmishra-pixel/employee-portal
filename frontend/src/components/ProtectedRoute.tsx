@@ -17,9 +17,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     );
   }
 
-  if (!isAuthenticated) {
-    // Kick unauthenticated users back to login page
-    return <Navigate to="/login" replace />;
+  if (!isAuthenticated) { 
+    return <Navigate to="/login" replace />; // Kick unauthenticated users back to login page
   }
 
   return children;

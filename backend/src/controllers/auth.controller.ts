@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../config/data-source";
 import { Employee } from "../entities/Employee";
-import { redisClient } from "../index"; // Adjust path to where your redisClient is initialized
+import { redisClient } from "../index";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -39,14 +39,14 @@ export const login = async (req: Request, res: Response) => {
     const isMatch = await bcrypt.compare(password, employee.password);    
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
-    // A. Generate Short-Lived Access Token (15 Mins)
+    // A. Generate Short-Lived Access Token
     const accessToken = jwt.sign(
       { id: employee.id, username: employee.username },
       process.env.JWT_ACCESS_SECRET as string,
       { expiresIn: "15m" }
     );
 
-    // B. Generate Long-Lived Refresh Token (7 Days)
+    // B. Generate Long-Lived Refresh Token 
     const refreshToken = jwt.sign(
       { id: employee.id },
       process.env.JWT_REFRESH_SECRET as string,
@@ -74,7 +74,7 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-// 3. Silent Token Refresh (Generates new Access Token using Cookie)
+// Silent Token Refresh (Generates new Access Token using Cookie)
 export const refreshTokens = async (req: Request, res: Response) => {
   try {
     // Read token straight from cookies
@@ -100,7 +100,7 @@ export const refreshTokens = async (req: Request, res: Response) => {
       process.env.JWT_ACCESS_SECRET as string,
       { expiresIn: "15m" }
     );
-
+ 
     res.json({ accessToken: newAccessToken });
   } catch (error) {
     return res.status(403).json({ message: "Invalid or Expired Refresh Token" });
